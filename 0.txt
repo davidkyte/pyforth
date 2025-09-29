@@ -48,7 +48,7 @@ variable bb
 \ testing compiling bad code
 \ : bad qwerty ;
 
-python Extns.py
+python Extn.py
 
 \ forth word list
 words cr
