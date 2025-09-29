@@ -1,0 +1,54 @@
+." Auto loading 0.txt" cr cr
+
+\ load simple python extension files
+python Times3.py
+
+\ demo of interpreting python code immediately
+<P 
+print( "Running python code ..." ) 
+P>
+
+\ embedding python code in a complied forth word
+: ls
+<p
+import os
+print( os.listdir() )
+p>
+;
+
+: ( - n n n ) red 255 0 0 ;
+
+: q ( - ) ." Goodbye" cr bye ;
+
+\ tesing if else then
+: TEST ( n -- )  0 > IF ." positive" else ." Negative" THEN CR ;
+
+\ testing begin ... until
+: count ( - ) 0 begin 1+ dup . cr dup 5 = until drop ;
+
+\ testing begin ... while ... repeat
+: eg2 ( - ) 5 
+    begin dup . 1- dup 0 > 
+    while cr 
+    repeat drop ;
+
+\ testing do ... loop
+: eg3 ( - ) 10 0 do i . loop ;
+
+\ testing do ... +loop
+: eg4 ( - ) 10 0 do i . 2 +loop ;
+
+\ testing create does> via constant and variable
+99 constant aa
+variable bb
+98 bb !
+
+." Type bye or q to exit" cr cr
+
+\ testing compiling bad code
+\ : bad qwerty ;
+
+python Extns2.py
+
+\ forth word list
+words cr
